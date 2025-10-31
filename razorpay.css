@@ -1,0 +1,92 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.payment-container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+}
+
+.payment-container h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.payment-container p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.order-box {
+  background: #f0f9ff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  border: 1px solid #d3ecff;
+}
+
+.order-box h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #0077cc;
+}
+
+.payment-section h2 {
+  margin-top: 10px;
+  color: #444;
+}
+
+.payment-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+}
+
+.payment-section li {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin: 5px 0;
+  background: #fafafa;
+}
+
+.pay-btn {
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.pay-btn:hover {
+  background: #005fa3;
+}
+
+.back-btn {
+  background: #ccc;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #bbb;
+}

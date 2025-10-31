@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 Shopping Cart</h1>
+            <p><span id="itemCount">3</span> items in your cart</p>
+        </div>
+
+        <div class="cart-layout">
+            <div class="cart-items" id="cartItems">
+                <div class="cart-item" data-id="1" data-price="7999">
+                    <div class="item-image">
+                        <img src="head" style="height: 150px ;width: 150px;" alt="Apple Buds" />
+                    </div>
+                    <div class="item-details">
+                        <div class="item-name">Apple Buds</div>
+                        <div class="item-price">7999</div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="remove-btn">Remove</button>
+                        <div class="item-total-price">7999</div>
+                    </div>
+                </div>
+
+                <div class="cart-item" data-id="2" data-price="19999">
+                    <div class="item-image"> <img src="watch" style="height: 150px ;width: 150px;" alt="Apple Buds" /></div>
+                    <div class="item-details">
+                        <div class="item-name">Rolex 7 Edition</div>
+                        <div class="item-price">19999</div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="remove-btn">Remove</button>
+                        <div class="item-total-price">19999</div>
+                    </div>
+                </div>
+
+                <div class="cart-item" data-id="3" data-price="4999">
+                    <div class="item-image"> <img src="bag" style="height: 150px ;width: 150px;" alt="Apple Buds" /></div>
+                    <div class="item-details">
+                        <div class="item-name">Safari Laptop Backpack</div>
+                        <div class="item-price">4999</div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">2</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="remove-btn">Remove</button>
+                        <div class="item-total-price">9998</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">37996</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (8%)</span>
+                    <span id="tax">3040</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span style="color: #4fffb0; font-weight: 600;">FREE</span>
+                </div>
+
+                <hr class="summary-divider">
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="total">41036</span>
+                </div>
+
+                <button class="checkout-btn">Proceed to Checkout</button>
+               <button class="continue-btn" onclick="window.location.href='address.html'">Continue Shopping</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCart() {
+            let subtotal = 0;
+            let itemCount = 0;
+
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.dataset.price);
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                const total = price * quantity;
+
+                item.querySelector('.item-total-price').textContent = total;
+                subtotal += total;
+                itemCount += quantity;
+            });
+
+            const tax = Math.round(subtotal * 0.08);
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = subtotal;
+            document.getElementById('tax').textContent = tax;
+            document.getElementById('total').textContent = total;
+            document.getElementById('itemCount').textContent = itemCount;
+        }
+
+        document.getElementById('cartItems').addEventListener('click', (e) => {
+            if (e.target.classList.contains('increase')) {
+                const item = e.target.closest('.cart-item');
+                const quantitySpan = item.querySelector('.quantity');
+                quantitySpan.textContent = parseInt(quantitySpan.textContent) + 1;
+                updateCart();
+            }
+
+            if (e.target.classList.contains('decrease')) {
+                const item = e.target.closest('.cart-item');
+                const quantitySpan = item.querySelector('.quantity');
+                const currentQty = parseInt(quantitySpan.textContent);
+                if (currentQty > 1) {
+                    quantitySpan.textContent = currentQty - 1;
+                    updateCart();
+                }
+            }
+
+            if (e.target.classList.contains('remove-btn')) {
+                const item = e.target.closest('.cart-item');
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    item.remove();
+                    updateCart();
+                }, 300);
+            }
+        });
+
+        updateCart();
+    </script>
+</body>
+</html>
